@@ -2,16 +2,11 @@ package cli
 
 import (
 	"flag"
-	"fmt"
 	"io"
-	"strings"
-	"text/tabwriter"
 
 	"github.com/jawher/mow.cli/internal/container"
 	"github.com/jawher/mow.cli/internal/flow"
 	"github.com/jawher/mow.cli/internal/fsm"
-	"github.com/jawher/mow.cli/internal/lexer"
-	"github.com/jawher/mow.cli/internal/parser"
 )
 
 /*
@@ -125,21 +120,7 @@ description is what would be shown in the help messages, e.g.:
 the last argument, init, is a function that will be called by mow.cli to further configure the created
 (sub) command, e.g. to add options, arguments and the code to execute
 */
-func (c *Cmd) Command(name, desc string, init CmdInitializer) {
-	aliases := strings.Fields(name)
-	c.commands = append(c.commands, &Cmd{
-		ErrorHandling: c.ErrorHandling,
-		name:          aliases[0],
-		aliases:       aliases,
-		desc:          desc,
-		init:          init,
-		commands:      []*Cmd{},
-		options:       []*container.Container{},
-		optionsIdx:    map[string]*container.Container{},
-		args:          []*container.Container{},
-		argsIdx:       map[string]*container.Container{},
-	})
-}
+func (c *Cmd) Command(name, desc string, init CmdInitializer) { _ = "STUB: not implemented"; return }
 
 /*
 Bool can be used to add a bool option or argument to a command.
@@ -147,20 +128,7 @@ It accepts either a BoolOpt or a BoolArg struct.
 
 The result should be stored in a variable (a pointer to a bool) which will be populated when the app is run and the call arguments get parsed
 */
-func (c *Cmd) Bool(p BoolParam) *bool {
-	value, into := p.value(nil)
-
-	switch x := p.(type) {
-	case BoolOpt:
-		c.mkOpt(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	case BoolArg:
-		c.mkArg(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	default:
-		panic(fmt.Sprintf("Unhandled param %v", p))
-	}
-
-	return into
-}
+func (c *Cmd) Bool(p BoolParam) *bool { _ = "STUB: not implemented"; return nil }
 
 /*
 BoolPtr can be used to add a bool option or argument to a command.
@@ -168,18 +136,7 @@ It accepts either a pointer to a bool var and a BoolOpt or a BoolArg struct.
 
 The into parameter points to a variable (a pointer to a bool) which will be populated when the app is run and the call arguments get parsed
 */
-func (c *Cmd) BoolPtr(into *bool, p BoolParam) {
-	value, _ := p.value(into)
-
-	switch x := p.(type) {
-	case BoolOpt:
-		c.mkOpt(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	case BoolArg:
-		c.mkArg(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	default:
-		panic(fmt.Sprintf("Unhandled param %v", p))
-	}
-}
+func (c *Cmd) BoolPtr(into *bool, p BoolParam) { _ = "STUB: not implemented"; return }
 
 /*
 String can be used to add a string option or argument to a command.
@@ -187,20 +144,7 @@ It accepts either a StringOpt or a StringArg struct.
 
 The result should be stored in a variable (a pointer to a string) which will be populated when the app is run and the call arguments get parsed
 */
-func (c *Cmd) String(p StringParam) *string {
-	value, into := p.value(nil)
-
-	switch x := p.(type) {
-	case StringOpt:
-		c.mkOpt(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	case StringArg:
-		c.mkArg(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	default:
-		panic(fmt.Sprintf("Unhandled param %v", p))
-	}
-
-	return into
-}
+func (c *Cmd) String(p StringParam) *string { _ = "STUB: not implemented"; return nil }
 
 /*
 StringPtr can be used to add a string option or argument to a command.
@@ -208,18 +152,7 @@ It accepts either a pointer to a string var and a StringOpt or a StringArg struc
 
 The into parameter points to a variable (a pointer to a string) which will be populated when the app is run and the call arguments get parsed
 */
-func (c *Cmd) StringPtr(into *string, p StringParam) {
-	value, _ := p.value(into)
-
-	switch x := p.(type) {
-	case StringOpt:
-		c.mkOpt(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	case StringArg:
-		c.mkArg(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	default:
-		panic(fmt.Sprintf("Unhandled param %v", p))
-	}
-}
+func (c *Cmd) StringPtr(into *string, p StringParam) { _ = "STUB: not implemented"; return }
 
 /*
 Int can be used to add an int option or argument to a command.
@@ -227,20 +160,7 @@ It accepts either a IntOpt or a IntArg struct.
 
 The result should be stored in a variable (a pointer to an int) which will be populated when the app is run and the call arguments get parsed
 */
-func (c *Cmd) Int(p IntParam) *int {
-	value, into := p.value(nil)
-
-	switch x := p.(type) {
-	case IntOpt:
-		c.mkOpt(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	case IntArg:
-		c.mkArg(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	default:
-		panic(fmt.Sprintf("Unhandled param %v", p))
-	}
-
-	return into
-}
+func (c *Cmd) Int(p IntParam) *int { _ = "STUB: not implemented"; return nil }
 
 /*
 IntPtr can be used to add a int option or argument to a command.
@@ -248,18 +168,7 @@ It accepts either a pointer to a int var and a IntOpt or a IntArg struct.
 
 The into parameter points to a variable (a pointer to a int) which will be populated when the app is run and the call arguments get parsed
 */
-func (c *Cmd) IntPtr(into *int, p IntParam) {
-	value, _ := p.value(into)
-
-	switch x := p.(type) {
-	case IntOpt:
-		c.mkOpt(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	case IntArg:
-		c.mkArg(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	default:
-		panic(fmt.Sprintf("Unhandled param %v", p))
-	}
-}
+func (c *Cmd) IntPtr(into *int, p IntParam) { _ = "STUB: not implemented"; return }
 
 /*
 Float64 can be used to add a float64 option or argument to a command.
@@ -267,20 +176,7 @@ It accepts either a Float64Opt or a Float64Arg struct.
 
 The result should be stored in a variable (a pointer to a float64) which will be populated when the app is run and the call arguments get parsed
 */
-func (c *Cmd) Float64(p Float64Param) *float64 {
-	value, into := p.value(nil)
-
-	switch x := p.(type) {
-	case Float64Opt:
-		c.mkOpt(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	case Float64Arg:
-		c.mkArg(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	default:
-		panic(fmt.Sprintf("Unhandled param %v", p))
-	}
-
-	return into
-}
+func (c *Cmd) Float64(p Float64Param) *float64 { _ = "STUB: not implemented"; return nil }
 
 /*
 Float64Ptr can be used to add a float64 option or argument to a command.
@@ -288,18 +184,7 @@ It accepts either a pointer to a float64 var and a Float64Opt or a Float64Arg st
 
 The into parameter points to a variable (a pointer to a float64) which will be populated when the app is run and the call arguments get parsed
 */
-func (c *Cmd) Float64Ptr(into *float64, p Float64Param) {
-	value, _ := p.value(into)
-
-	switch x := p.(type) {
-	case Float64Opt:
-		c.mkOpt(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	case Float64Arg:
-		c.mkArg(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	default:
-		panic(fmt.Sprintf("Unhandled param %v", p))
-	}
-}
+func (c *Cmd) Float64Ptr(into *float64, p Float64Param) { _ = "STUB: not implemented"; return }
 
 /*
 Strings can be used to add a string slice option or argument to a command.
@@ -307,20 +192,7 @@ It accepts either a StringsOpt or a StringsArg struct.
 
 The result should be stored in a variable (a pointer to a string slice) which will be populated when the app is run and the call arguments get parsed
 */
-func (c *Cmd) Strings(p StringsParam) *[]string {
-	value, into := p.value(nil)
-
-	switch x := p.(type) {
-	case StringsOpt:
-		c.mkOpt(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	case StringsArg:
-		c.mkArg(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	default:
-		panic(fmt.Sprintf("Unhandled param %v", p))
-	}
-
-	return into
-}
+func (c *Cmd) Strings(p StringsParam) *[]string { _ = "STUB: not implemented"; return nil }
 
 /*
 StringsPtr can be used to add a string slice option or argument to a command.
@@ -328,18 +200,7 @@ It accepts either a pointer to a string slice var and a StringsOpt or a StringsA
 
 The into parameter points to a variable (a pointer to a string slice) which will be populated when the app is run and the call arguments get parsed
 */
-func (c *Cmd) StringsPtr(into *[]string, p StringsParam) {
-	value, _ := p.value(into)
-
-	switch x := p.(type) {
-	case StringsOpt:
-		c.mkOpt(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	case StringsArg:
-		c.mkArg(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	default:
-		panic(fmt.Sprintf("Unhandled param %v", p))
-	}
-}
+func (c *Cmd) StringsPtr(into *[]string, p StringsParam) { _ = "STUB: not implemented"; return }
 
 /*
 Ints can be used to add an int slice option or argument to a command.
@@ -347,20 +208,7 @@ It accepts either a IntsOpt or a IntsArg struct.
 
 The result should be stored in a variable (a pointer to an int slice) which will be populated when the app is run and the call arguments get parsed
 */
-func (c *Cmd) Ints(p IntsParam) *[]int {
-	value, into := p.value(nil)
-
-	switch x := p.(type) {
-	case IntsOpt:
-		c.mkOpt(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	case IntsArg:
-		c.mkArg(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	default:
-		panic(fmt.Sprintf("Unhandled param %v", p))
-	}
-
-	return into
-}
+func (c *Cmd) Ints(p IntsParam) *[]int { _ = "STUB: not implemented"; return nil }
 
 /*
 IntsPtr can be used to add a int slice option or argument to a command.
@@ -368,18 +216,7 @@ It accepts either a pointer to a int slice var and a IntsOpt or a IntsArg struct
 
 The into parameter points to a variable (a pointer to a int slice) which will be populated when the app is run and the call arguments get parsed
 */
-func (c *Cmd) IntsPtr(into *[]int, p IntsParam) {
-	value, _ := p.value(into)
-
-	switch x := p.(type) {
-	case IntsOpt:
-		c.mkOpt(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	case IntsArg:
-		c.mkArg(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	default:
-		panic(fmt.Sprintf("Unhandled param %v", p))
-	}
-}
+func (c *Cmd) IntsPtr(into *[]int, p IntsParam) { _ = "STUB: not implemented"; return }
 
 /*
 Floats64 can be used to add an float64 slice option or argument to a command.
@@ -387,20 +224,7 @@ It accepts either a Floats64Opt or a Floats64Arg struct.
 
 The result should be stored in a variable (a pointer to an float64 slice) which will be populated when the app is run and the call arguments get parsed
 */
-func (c *Cmd) Floats64(p Floats64Param) *[]float64 {
-	value, into := p.value(nil)
-
-	switch x := p.(type) {
-	case Floats64Opt:
-		c.mkOpt(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	case Floats64Arg:
-		c.mkArg(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	default:
-		panic(fmt.Sprintf("Unhandled param %v", p))
-	}
-
-	return into
-}
+func (c *Cmd) Floats64(p Floats64Param) *[]float64 { _ = "STUB: not implemented"; return nil }
 
 /*
 Floats64Ptr can be used to add a float64 slice option or argument to a command.
@@ -408,18 +232,7 @@ It accepts either a pointer to a float64 slice var and a Floats64Opt or a Floats
 
 The into parameter points to a variable (a pointer to a float64 slice) which will be populated when the app is run and the call arguments get parsed
 */
-func (c *Cmd) Floats64Ptr(into *[]float64, p Floats64Param) {
-	value, _ := p.value(into)
-
-	switch x := p.(type) {
-	case Floats64Opt:
-		c.mkOpt(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	case Floats64Arg:
-		c.mkArg(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: value, ValueSetByUser: x.SetByUser})
-	default:
-		panic(fmt.Sprintf("Unhandled param %v", p))
-	}
-}
+func (c *Cmd) Floats64Ptr(into *[]float64, p Floats64Param) { _ = "STUB: not implemented"; return }
 
 /*
 Var can be used to add a custom option or argument to a command.
@@ -428,73 +241,11 @@ It accepts either a VarOpt or a VarArg struct.
 As opposed to the other built-in types, this function does not return a pointer the the value.
 Instead, the VarOpt or VarOptArg structs hold the said value.
 */
-func (c *Cmd) Var(p VarParam) {
-	switch x := p.(type) {
-	case VarOpt:
-		c.mkOpt(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: p.value(), ValueSetByUser: x.SetByUser})
-	case VarArg:
-		c.mkArg(container.Container{Name: x.Name, Desc: x.Desc, EnvVar: x.EnvVar, HideValue: x.HideValue, Value: p.value(), ValueSetByUser: x.SetByUser})
-	default:
-		panic(fmt.Sprintf("Unhandled param %v", p))
-	}
-}
+func (c *Cmd) Var(p VarParam) { _ = "STUB: not implemented"; return }
 
-func (c *Cmd) doInit() error {
-	if c.init != nil {
-		c.init(c)
-	}
+func (c *Cmd) doInit() error { _ = "STUB: not implemented"; return nil }
 
-	parents := append(c.parents, c.name)
-
-	for _, sub := range c.commands {
-		sub.parents = parents
-	}
-
-	if len(c.Spec) == 0 {
-		if len(c.options) > 0 {
-			c.Spec = "[OPTIONS] "
-		}
-		for _, arg := range c.args {
-			c.Spec += arg.Name + " "
-		}
-	}
-
-	tokens, err := lexer.Tokenize(c.Spec)
-	if err != nil {
-		return err
-	}
-
-	params := parser.Params{
-		Spec:       c.Spec,
-		Options:    c.options,
-		OptionsIdx: c.optionsIdx,
-		Args:       c.args,
-		ArgsIdx:    c.argsIdx,
-	}
-	s, err := parser.Parse(tokens, params)
-	if err != nil {
-		return err
-	}
-	c.fsm = s
-	return nil
-}
-
-func (c *Cmd) onError(err error) {
-	if err == errHelpRequested || err == errVersionRequested {
-		if c.ErrorHandling == flag.ExitOnError {
-			exiter(0)
-		}
-		return
-	}
-
-	switch c.ErrorHandling {
-	case flag.ExitOnError:
-		exiter(2)
-	case flag.PanicOnError:
-		panic(err)
-	}
-
-}
+func (c *Cmd) onError(err error) { _ = "STUB: not implemented"; return }
 
 /*
 PrintHelp prints the command's help message.
@@ -502,322 +253,47 @@ In most cases the library users won't need to call this method, unless
 a more complex validation is needed
 */
 func (c *Cmd) PrintHelp() {
-	c.printHelp(false)
+	_ = "STUB: not implemented"
+
+	/*
+	   PrintLongHelp prints the command's help message using the command long description if specified.
+	   In most cases the library users won't need to call this method, unless
+	   a more complex validation is needed
+	*/return
 }
 
-/*
-PrintLongHelp prints the command's help message using the command long description if specified.
-In most cases the library users won't need to call this method, unless
-a more complex validation is needed
-*/
-func (c *Cmd) PrintLongHelp() {
-	c.printHelp(true)
-}
+func (c *Cmd) PrintLongHelp() { _ = "STUB: not implemented"; return }
 
-func (c *Cmd) printHelp(longDesc bool) {
-	full := append(c.parents, c.name)
-	path := strings.Join(full, " ")
-	fmt.Fprintf(stdErr, "\nUsage: %s", path)
+func (c *Cmd) printHelp(longDesc bool) { _ = "STUB: not implemented"; return }
 
-	spec := strings.TrimSpace(c.Spec)
-	if len(spec) > 0 {
-		fmt.Fprintf(stdErr, " %s", spec)
-	}
+func formatOptNamesForHelp(o *container.Container) string { _ = "STUB: not implemented"; return "" }
 
-	if len(c.commands) > 0 {
-		fmt.Fprint(stdErr, " COMMAND [arg...]")
-	}
-	fmt.Fprint(stdErr, "\n\n")
+// 2 spaces instead of the short option (-x), one space for the comma (,) and one space for the after comma blank
 
-	desc := c.desc
-	if longDesc && len(c.LongDesc) > 0 {
-		desc = c.LongDesc
-	}
-	if len(desc) > 0 {
-		fmt.Fprintf(stdErr, "%s\n", desc)
-	}
+func formatValueForHelp(hide bool, v string) string { _ = "STUB: not implemented"; return "" }
 
-	w := tabwriter.NewWriter(stdErr, 15, 1, 3, ' ', 0)
-
-	if len(c.args) > 0 {
-		fmt.Fprint(w, "\t\nArguments:\t\n")
-
-		for _, arg := range c.args {
-			var (
-				env   = formatEnvVarsForHelp(arg.EnvVar)
-				value = formatValueForHelp(arg.HideValue, arg.DefaultValue)
-			)
-			printTabbedRow(w, arg.Name, joinStrings(arg.Desc, env, value))
-		}
-	}
-
-	if len(c.options) > 0 {
-		fmt.Fprint(w, "\t\nOptions:\t\n")
-
-		for _, opt := range c.options {
-			var (
-				optNames = formatOptNamesForHelp(opt)
-				env      = formatEnvVarsForHelp(opt.EnvVar)
-				value    = formatValueForHelp(opt.HideValue, opt.DefaultValue)
-			)
-			printTabbedRow(w, optNames, joinStrings(opt.Desc, env, value))
-		}
-	}
-
-	commands := make([]*Cmd, 0, len(c.commands))
-	for _, c := range c.commands {
-		if err := c.doInit(); err != nil {
-			panic(err)
-		}
-
-		if c.Hidden {
-			continue
-		}
-
-		commands = append(commands, c)
-	}
-
-	if len(commands) > 0 {
-		fmt.Fprint(w, "\t\nCommands:\t\n")
-
-		for _, c := range commands {
-			fmt.Fprintf(w, "  %s\t%s\n", strings.Join(c.aliases, ", "), c.desc)
-		}
-	}
-
-	if len(commands) > 0 {
-		fmt.Fprintf(w, "\t\nRun '%s COMMAND --help' for more information on a command.\n", path)
-	}
-
-	w.Flush()
-}
-
-func formatOptNamesForHelp(o *container.Container) string {
-	short, long := "", ""
-
-	for _, n := range o.Names {
-		if len(n) == 2 && short == "" {
-			short = n
-		}
-
-		if len(n) > 2 && long == "" {
-			long = n
-		}
-	}
-
-	switch {
-	case short != "" && long != "":
-		return fmt.Sprintf("%s, %s", short, long)
-	case short != "":
-		return short
-	case long != "":
-		// 2 spaces instead of the short option (-x), one space for the comma (,) and one space for the after comma blank
-		return fmt.Sprintf("    %s", long)
-	default:
-		return ""
-	}
-}
-
-func formatValueForHelp(hide bool, v string) string {
-	if hide {
-		return ""
-	}
-
-	if v == "" {
-		return ""
-	}
-
-	return fmt.Sprintf("(default %s)", v)
-}
-
-func formatEnvVarsForHelp(envVars string) string {
-	if strings.TrimSpace(envVars) == "" {
-		return ""
-	}
-	vars := strings.Fields(envVars)
-	res := "(env"
-	sep := " "
-	for i, v := range vars {
-		if i > 0 {
-			sep = ", "
-		}
-		res += fmt.Sprintf("%s$%s", sep, v)
-	}
-	res += ")"
-	return res
-}
+func formatEnvVarsForHelp(envVars string) string { _ = "STUB: not implemented"; return "" }
 
 func (c *Cmd) parse(args []string, entry, inFlow, outFlow *flow.Step) error {
-	helpIndex := c.helpIndex(args)
-	nargsLen := c.getOptsAndArgs(args)
-
-	if helpIndex >= 0 && helpIndex < nargsLen {
-		c.PrintLongHelp()
-		c.onError(errHelpRequested)
-		return nil
-	}
-
-	// help was requested, but not for this command, skip the validation
-	if helpIndex >= 0 {
-		arg := args[nargsLen]
-		for _, sub := range c.commands {
-			if !sub.isAlias(arg) {
-				continue
-			}
-
-			if err := sub.doInit(); err != nil {
-				panic(err)
-			}
-
-			return sub.parse(args[nargsLen+1:], entry, nil, nil)
-		}
-		// impossible case
-		panic("wut")
-	}
-
-	if err := c.fsm.Parse(args[:nargsLen]); err != nil {
-		fmt.Fprintf(stdErr, "Error: %s\n", err.Error())
-		c.PrintHelp()
-		c.onError(err)
-		return err
-	}
-
-	newInFlow := &flow.Step{
-		Do:     c.Before,
-		Error:  outFlow,
-		Desc:   fmt.Sprintf("%s.Before", c.name),
-		Exiter: exiter,
-	}
-	inFlow.Success = newInFlow
-
-	newOutFlow := &flow.Step{
-		Do:      c.After,
-		Success: outFlow,
-		Error:   outFlow,
-		Desc:    fmt.Sprintf("%s.After", c.name),
-		Exiter:  exiter,
-	}
-
-	args = args[nargsLen:]
-	if len(args) == 0 {
-		if c.Action != nil {
-			newInFlow.Success = &flow.Step{
-				Do:      c.Action,
-				Success: newOutFlow,
-				Error:   newOutFlow,
-				Desc:    fmt.Sprintf("%s.Action", c.name),
-				Exiter:  exiter,
-			}
-
-			entry.Run(nil)
-			return nil
-		}
-		c.PrintHelp()
-		c.onError(nil)
-		return nil
-	}
-
-	arg := args[0]
-	for _, sub := range c.commands {
-		if sub.isAlias(arg) {
-			if err := sub.doInit(); err != nil {
-				panic(err)
-			}
-			return sub.parse(args[1:], entry, newInFlow, newOutFlow)
-		}
-	}
-
-	var err error
-	switch {
-	case strings.HasPrefix(arg, "-"):
-		err = fmt.Errorf("Error: illegal option %s", arg)
-		fmt.Fprintln(stdErr, err.Error())
-	default:
-		err = fmt.Errorf("Error: illegal input %s", arg)
-		fmt.Fprintln(stdErr, err.Error())
-	}
-	c.PrintHelp()
-	c.onError(err)
-	return err
-
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (c *Cmd) helpIndex(args []string) int {
-	searchSet := []string{"-h", "--help"}
-	for i, arg := range args {
-		if arg == "--" {
-			return -1
-		}
-		for _, searchArg := range searchSet {
-			if arg == searchArg {
-				return i
-			}
-		}
-	}
-	return -1
-}
+// help was requested, but not for this command, skip the validation
+
+// impossible case
+
+func (c *Cmd) helpIndex(args []string) int { _ = "STUB: not implemented"; return 0 }
 
 func (c *Cmd) isFirstItemAmong(args []string, searchSet []string) bool {
-	if len(args) == 0 {
-		return false
-	}
-
-	arg := args[0]
-	for _, searchArg := range searchSet {
-		if arg == searchArg {
-			return true
-		}
-	}
+	_ = "STUB: not implemented"
 	return false
 }
 
-func (c *Cmd) getOptsAndArgs(args []string) int {
-	consumed := 0
+func (c *Cmd) getOptsAndArgs(args []string) int { _ = "STUB: not implemented"; return 0 }
 
-	for _, arg := range args {
-		for _, sub := range c.commands {
-			if sub.isAlias(arg) {
-				return consumed
-			}
-		}
-		consumed++
-	}
-	return consumed
-}
+func (c *Cmd) isAlias(arg string) bool { _ = "STUB: not implemented"; return false }
 
-func (c *Cmd) isAlias(arg string) bool {
-	for _, alias := range c.aliases {
-		if arg == alias {
-			return true
-		}
-	}
-	return false
-}
+func joinStrings(parts ...string) string { _ = "STUB: not implemented"; return "" }
 
-func joinStrings(parts ...string) string {
-	res := ""
-	for _, part := range parts {
-		s := strings.TrimSpace(part)
-		if s == "" {
-			continue
-		}
-		if res != "" {
-			res += " "
-		}
-		res += part
-	}
-	return res
-}
-
-func printTabbedRow(w io.Writer, s1 string, s2 string) {
-	lines := strings.Split(s2, "\n")
-	fmt.Fprintf(w, "  %s\t%s\n", s1, strings.TrimSpace(lines[0]))
-
-	if len(lines) == 1 {
-		return
-	}
-
-	for _, line := range lines[1:] {
-		fmt.Fprintf(w, "  %s\t%s\n", "", strings.TrimSpace(line))
-	}
-}
+func printTabbedRow(w io.Writer, s1 string, s2 string) { _ = "STUB: not implemented"; return }

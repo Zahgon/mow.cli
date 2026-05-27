@@ -14,7 +14,4 @@ type Matcher interface {
 }
 
 // IsShortcut is a helper to determine whether a given matcher is a Shortcut (always matches)
-func IsShortcut(matcher Matcher) bool {
-	_, ok := matcher.(shortcut)
-	return ok
-}
+func IsShortcut(matcher Matcher) bool { _ = "STUB: not implemented"; return false }

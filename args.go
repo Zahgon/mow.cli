@@ -2,12 +2,8 @@ package cli
 
 import (
 	"flag"
-	"fmt"
-
-	"github.com/jawher/mow.cli/internal/lexer"
 
 	"github.com/jawher/mow.cli/internal/container"
-	"github.com/jawher/mow.cli/internal/values"
 )
 
 // BoolArg describes a boolean argument
@@ -27,10 +23,8 @@ type BoolArg struct {
 }
 
 func (a BoolArg) value(into *bool) (flag.Value, *bool) {
-	if into == nil {
-		into = new(bool)
-	}
-	return values.NewBool(into, a.Value), into
+	_ = "STUB: not implemented"
+	return *new(flag.Value), nil
 }
 
 // StringArg describes a string argument
@@ -50,10 +44,8 @@ type StringArg struct {
 }
 
 func (a StringArg) value(into *string) (flag.Value, *string) {
-	if into == nil {
-		into = new(string)
-	}
-	return values.NewString(into, a.Value), into
+	_ = "STUB: not implemented"
+	return *new(flag.Value), nil
 }
 
 // IntArg describes an int argument
@@ -73,10 +65,8 @@ type IntArg struct {
 }
 
 func (a IntArg) value(into *int) (flag.Value, *int) {
-	if into == nil {
-		into = new(int)
-	}
-	return values.NewInt(into, a.Value), into
+	_ = "STUB: not implemented"
+	return *new(flag.Value), nil
 }
 
 // Float64Arg describes an float64 argument
@@ -96,10 +86,8 @@ type Float64Arg struct {
 }
 
 func (a Float64Arg) value(into *float64) (flag.Value, *float64) {
-	if into == nil {
-		into = new(float64)
-	}
-	return values.NewFloat64(into, a.Value), into
+	_ = "STUB: not implemented"
+	return *new(flag.Value), nil
 }
 
 // StringsArg describes a string slice argument
@@ -120,10 +108,8 @@ type StringsArg struct {
 }
 
 func (a StringsArg) value(into *[]string) (flag.Value, *[]string) {
-	if into == nil {
-		into = new([]string)
-	}
-	return values.NewStrings(into, a.Value), into
+	_ = "STUB: not implemented"
+	return *new(flag.Value), nil
 }
 
 // IntsArg describes an int slice argument
@@ -144,10 +130,8 @@ type IntsArg struct {
 }
 
 func (a IntsArg) value(into *[]int) (flag.Value, *[]int) {
-	if into == nil {
-		into = new([]int)
-	}
-	return values.NewInts(into, a.Value), into
+	_ = "STUB: not implemented"
+	return *new(flag.Value), nil
 }
 
 // Floats64Arg describes an int slice argument
@@ -168,10 +152,8 @@ type Floats64Arg struct {
 }
 
 func (a Floats64Arg) value(into *[]float64) (flag.Value, *[]float64) {
-	if into == nil {
-		into = new([]float64)
-	}
-	return values.NewFloats64(into, a.Value), into
+	_ = "STUB: not implemented"
+	return *new(flag.Value), nil
 }
 
 // VarArg describes an argument where the type and format of the value is controlled by the developer
@@ -192,20 +174,18 @@ type VarArg struct {
 }
 
 func (a VarArg) value() flag.Value {
-	return a.Value
+	_ = "STUB: not implemented"
+
+	/*
+	   BoolArg defines a boolean argument on the command c named `name`, with an initial value of `value` and a description of `desc` which will be used in help messages.
+
+	   The result should be stored in a variable (a pointer to a bool) which will be populated when the app is run and the call arguments get parsed
+	*/return *new(flag.Value)
 }
 
-/*
-BoolArg defines a boolean argument on the command c named `name`, with an initial value of `value` and a description of `desc` which will be used in help messages.
-
-The result should be stored in a variable (a pointer to a bool) which will be populated when the app is run and the call arguments get parsed
-*/
 func (c *Cmd) BoolArg(name string, value bool, desc string) *bool {
-	return c.Bool(BoolArg{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 /*
@@ -214,11 +194,8 @@ BoolArgPtr defines a boolean argument on the command c named `name`, with an ini
 The into parameter points to a variable (a pointer to a bool) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) BoolArgPtr(into *bool, name string, value bool, desc string) {
-	c.BoolPtr(into, BoolArg{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 /*
@@ -227,11 +204,8 @@ StringArg defines a string argument on the command c named `name`, with an initi
 The result should be stored in a variable (a pointer to a string) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) StringArg(name string, value string, desc string) *string {
-	return c.String(StringArg{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 /*
@@ -240,11 +214,8 @@ StringArgPtr defines a string argument on the command c named `name`, with an in
 The into parameter points to a variable (a pointer to a string) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) StringArgPtr(into *string, name string, value string, desc string) {
-	c.StringPtr(into, StringArg{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 /*
@@ -253,11 +224,8 @@ IntArg defines an int argument on the command c named `name`, with an initial va
 The result should be stored in a variable (a pointer to an int) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) IntArg(name string, value int, desc string) *int {
-	return c.Int(IntArg{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 /*
@@ -266,11 +234,8 @@ IntArgPtr defines an int argument on the command c named `name`, with an initial
 The into parameter points to a variable (a pointer to a int) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) IntArgPtr(into *int, name string, value int, desc string) {
-	c.IntPtr(into, IntArg{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 /*
@@ -279,11 +244,8 @@ Float64Arg defines an float64 argument on the command c named `name`, with an in
 The result should be stored in a variable (a pointer to an float64) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) Float64Arg(name string, value float64, desc string) *float64 {
-	return c.Float64(Float64Arg{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 /*
@@ -292,11 +254,8 @@ Float64ArgPtr defines an float64 argument on the command c named `name`, with an
 The into parameter points to a variable (a pointer to a float64) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) Float64ArgPtr(into *float64, name string, value float64, desc string) {
-	c.Float64Ptr(into, Float64Arg{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 /*
@@ -305,11 +264,8 @@ StringsArg defines a string slice argument on the command c named `name`, with a
 The result should be stored in a variable (a pointer to a string slice) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) StringsArg(name string, value []string, desc string) *[]string {
-	return c.Strings(StringsArg{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 /*
@@ -318,11 +274,8 @@ StringsArgPtr defines a string slice argument on the command c named `name`, wit
 The into parameter points to a variable (a pointer to a string slice) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) StringsArgPtr(into *[]string, name string, value []string, desc string) {
-	c.StringsPtr(into, StringsArg{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 /*
@@ -331,11 +284,8 @@ IntsArg defines an int slice argument on the command c named `name`, with an ini
 The result should be stored in a variable (a pointer to an int slice) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) IntsArg(name string, value []int, desc string) *[]int {
-	return c.Ints(IntsArg{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 /*
@@ -344,11 +294,8 @@ IntsArgPtr defines a int slice argument on the command c named `name`, with an i
 The into parameter points to a variable (a pointer to a int slice) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) IntsArgPtr(into *[]int, name string, value []int, desc string) {
-	c.IntsPtr(into, IntsArg{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 /*
@@ -357,11 +304,8 @@ Floats64Arg defines an float64 slice argument on the command c named `name`, wit
 The result should be stored in a variable (a pointer to an float64 slice) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) Floats64Arg(name string, value []float64, desc string) *[]float64 {
-	return c.Floats64(Floats64Arg{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 /*
@@ -370,11 +314,8 @@ Floats64ArgPtr defines a float64 slice argument on the command c named `name`, w
 The into parameter points to a variable (a pointer to a float64 slice) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) Floats64ArgPtr(into *[]float64, name string, value []float64, desc string) {
-	c.Floats64Ptr(into, Floats64Arg{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 /*
@@ -382,34 +323,8 @@ VarArg defines an argument where the type and format is controlled by the develo
 
 The result will be stored in the value parameter (a value implementing the flag.Value interface) which will be populated when the app is run and the call arguments get parsed
 */
-func (c *Cmd) VarArg(name string, value flag.Value, desc string) {
-	c.mkArg(container.Container{Name: name, Desc: desc, Value: value})
-}
+func (c *Cmd) VarArg(name string, value flag.Value, desc string) { _ = "STUB: not implemented"; return }
 
-func (c *Cmd) mkArg(arg container.Container) {
-	if !validArgName(arg.Name) {
-		panic(fmt.Sprintf("invalid argument name %q: must be in all caps", arg.Name))
-	}
-	if _, found := c.argsIdx[arg.Name]; found {
-		panic(fmt.Sprintf("duplicate argument name %q", arg.Name))
-	}
+func (c *Cmd) mkArg(arg container.Container) { _ = "STUB: not implemented"; return }
 
-	arg.DefaultValue = values.DefaultValue(arg.Value)
-
-	arg.ValueSetFromEnv = values.SetFromEnv(arg.Value, arg.EnvVar)
-
-	c.args = append(c.args, &arg)
-	c.argsIdx[arg.Name] = &arg
-}
-
-func validArgName(n string) bool {
-	tokens, err := lexer.Tokenize(n)
-	if err != nil {
-		return false
-	}
-	if len(tokens) != 1 {
-		return false
-	}
-
-	return tokens[0].Typ == lexer.TTArg
-}
+func validArgName(n string) bool { _ = "STUB: not implemented"; return false }

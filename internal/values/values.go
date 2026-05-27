@@ -2,8 +2,6 @@ package values
 
 import (
 	"flag"
-	"fmt"
-	"strconv"
 )
 
 // BoolValued is an interface values can implement to indicate that they are a bool option, i.e. can be set without providing a value with just -f for example
@@ -40,38 +38,25 @@ var (
 )
 
 // NewBool creates a new bool value
-func NewBool(into *bool, v bool) *BoolValue {
-	*into = v
-	return (*BoolValue)(into)
-}
+func NewBool(into *bool, v bool) *BoolValue { _ = "STUB: not implemented"; return nil }
 
 // Set sets the value from a provided string
-func (bo *BoolValue) Set(s string) error {
-	b, err := strconv.ParseBool(s)
-	if err != nil {
-		return err
-	}
-	*bo = BoolValue(b)
-	return nil
-}
+func (bo *BoolValue) Set(s string) error { _ = "STUB: not implemented"; return nil }
 
 // IsBoolFlag returns true
-func (bo *BoolValue) IsBoolFlag() bool {
-	return true
-}
+func (bo *BoolValue) IsBoolFlag() bool { _ = "STUB: not implemented"; return false }
 
-func (bo *BoolValue) String() string {
-	return fmt.Sprintf("%v", *bo)
-}
+func (bo *BoolValue) String() string { _ = "STUB: not implemented"; return "" }
 
 // IsDefault return true if the bool value is false
 func (bo *BoolValue) IsDefault() bool {
-	return !bool(*bo)
-}
+	_ = "STUB: not implemented"
 
-/******************************************************************************/
-/* STRING                                                                        */
-/******************************************************************************/
+	/******************************************************************************/
+	/* STRING                                                                        */
+	/******************************************************************************/
+	return false
+}
 
 // StringValue is a flag.Value type holding string values
 type StringValue string
@@ -82,25 +67,15 @@ var (
 )
 
 // NewString creates a new string value
-func NewString(into *string, v string) *StringValue {
-	*into = v
-	return (*StringValue)(into)
-}
+func NewString(into *string, v string) *StringValue { _ = "STUB: not implemented"; return nil }
 
 // Set sets the value from a provided string
-func (sa *StringValue) Set(s string) error {
-	*sa = StringValue(s)
-	return nil
-}
+func (sa *StringValue) Set(s string) error { _ = "STUB: not implemented"; return nil }
 
-func (sa *StringValue) String() string {
-	return fmt.Sprintf("%#v", *sa)
-}
+func (sa *StringValue) String() string { _ = "STUB: not implemented"; return "" }
 
 // IsDefault return true if the string value is empty
-func (sa *StringValue) IsDefault() bool {
-	return string(*sa) == ""
-}
+func (sa *StringValue) IsDefault() bool { _ = "STUB: not implemented"; return false }
 
 /******************************************************************************/
 /* INT                                                                        */
@@ -114,24 +89,12 @@ var (
 )
 
 // NewInt creates a new int value
-func NewInt(into *int, v int) *IntValue {
-	*into = v
-	return (*IntValue)(into)
-}
+func NewInt(into *int, v int) *IntValue { _ = "STUB: not implemented"; return nil }
 
 // Set sets the value from a provided string
-func (ia *IntValue) Set(s string) error {
-	i, err := strconv.ParseInt(s, 10, 64)
-	if err != nil {
-		return err
-	}
-	*ia = IntValue(int(i))
-	return nil
-}
+func (ia *IntValue) Set(s string) error { _ = "STUB: not implemented"; return nil }
 
-func (ia *IntValue) String() string {
-	return fmt.Sprintf("%v", *ia)
-}
+func (ia *IntValue) String() string { _ = "STUB: not implemented"; return "" }
 
 /******************************************************************************/
 /* Float64                                                                        */
@@ -145,24 +108,12 @@ var (
 )
 
 // NewFloat64 creates a new int value
-func NewFloat64(into *float64, v float64) *Float64Value {
-	*into = v
-	return (*Float64Value)(into)
-}
+func NewFloat64(into *float64, v float64) *Float64Value { _ = "STUB: not implemented"; return nil }
 
 // Set sets the value from a provided string
-func (ia *Float64Value) Set(s string) error {
-	i, err := strconv.ParseFloat(s, 64)
-	if err != nil {
-		return err
-	}
-	*ia = Float64Value(i)
-	return nil
-}
+func (ia *Float64Value) Set(s string) error { _ = "STUB: not implemented"; return nil }
 
-func (ia *Float64Value) String() string {
-	return fmt.Sprintf("%v", *ia)
-}
+func (ia *Float64Value) String() string { _ = "STUB: not implemented"; return "" }
 
 /******************************************************************************/
 /* STRINGS                                                                    */
@@ -178,37 +129,22 @@ var (
 )
 
 // NewStrings creates a new multi-string value
-func NewStrings(into *[]string, v []string) *StringsValue {
-	*into = v
-	return (*StringsValue)(into)
-}
+func NewStrings(into *[]string, v []string) *StringsValue { _ = "STUB: not implemented"; return nil }
 
 // Set sets the value from a provided string
-func (sa *StringsValue) Set(s string) error {
-	*sa = append(*sa, s)
-	return nil
-}
+func (sa *StringsValue) Set(s string) error { _ = "STUB: not implemented"; return nil }
 
-func (sa *StringsValue) String() string {
-	res := "["
-	for idx, s := range *sa {
-		if idx > 0 {
-			res += ", "
-		}
-		res += fmt.Sprintf("%#v", s)
-	}
-	return res + "]"
-}
+func (sa *StringsValue) String() string { _ = "STUB: not implemented"; return "" }
 
 // Clear clears the slice
 func (sa *StringsValue) Clear() {
-	*sa = nil
+	_ = "STUB: not implemented"
+
+	// IsDefault return true if the string slice is empty
+	return
 }
 
-// IsDefault return true if the string slice is empty
-func (sa *StringsValue) IsDefault() bool {
-	return len(*sa) == 0
-}
+func (sa *StringsValue) IsDefault() bool { _ = "STUB: not implemented"; return false }
 
 /******************************************************************************/
 /* INTS                                                                       */
@@ -224,41 +160,22 @@ var (
 )
 
 // NewInts creates a new multi-int value
-func NewInts(into *[]int, v []int) *IntsValue {
-	*into = v
-	return (*IntsValue)(into)
-}
+func NewInts(into *[]int, v []int) *IntsValue { _ = "STUB: not implemented"; return nil }
 
 // Set sets the value from a provided string
-func (ia *IntsValue) Set(s string) error {
-	i, err := strconv.ParseInt(s, 10, 64)
-	if err != nil {
-		return err
-	}
-	*ia = append(*ia, int(i))
-	return nil
-}
+func (ia *IntsValue) Set(s string) error { _ = "STUB: not implemented"; return nil }
 
-func (ia *IntsValue) String() string {
-	res := "["
-	for idx, s := range *ia {
-		if idx > 0 {
-			res += ", "
-		}
-		res += fmt.Sprintf("%v", s)
-	}
-	return res + "]"
-}
+func (ia *IntsValue) String() string { _ = "STUB: not implemented"; return "" }
 
 // Clear clears the slice
 func (ia *IntsValue) Clear() {
-	*ia = nil
+	_ = "STUB: not implemented"
+
+	// IsDefault return true if the int slice is empty
+	return
 }
 
-// IsDefault return true if the int slice is empty
-func (ia *IntsValue) IsDefault() bool {
-	return len(*ia) == 0
-}
+func (ia *IntsValue) IsDefault() bool { _ = "STUB: not implemented"; return false }
 
 /******************************************************************************/
 /* FLOATs64                                                                       */
@@ -275,37 +192,21 @@ var (
 
 // NewFloats64 creates a new multi-int value
 func NewFloats64(into *[]float64, v []float64) *Floats64Value {
-	*into = v
-	return (*Floats64Value)(into)
-}
-
-// Set sets the value from a provided string
-func (ia *Floats64Value) Set(s string) error {
-	i, err := strconv.ParseFloat(s, 64)
-	if err != nil {
-		return err
-	}
-	*ia = append(*ia, i)
+	_ = "STUB: not implemented"
 	return nil
 }
 
-func (ia *Floats64Value) String() string {
-	res := "["
-	for idx, s := range *ia {
-		if idx > 0 {
-			res += ", "
-		}
-		res += fmt.Sprintf("%v", s)
-	}
-	return res + "]"
-}
+// Set sets the value from a provided string
+func (ia *Floats64Value) Set(s string) error { _ = "STUB: not implemented"; return nil }
+
+func (ia *Floats64Value) String() string { _ = "STUB: not implemented"; return "" }
 
 // Clear clears the slice
 func (ia *Floats64Value) Clear() {
-	*ia = nil
+	_ = "STUB: not implemented"
+
+	// IsDefault return true if the int slice is empty
+	return
 }
 
-// IsDefault return true if the int slice is empty
-func (ia *Floats64Value) IsDefault() bool {
-	return len(*ia) == 0
-}
+func (ia *Floats64Value) IsDefault() bool { _ = "STUB: not implemented"; return false }

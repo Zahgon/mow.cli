@@ -2,11 +2,8 @@ package cli
 
 import (
 	"flag"
-	"fmt"
-	"strings"
 
 	"github.com/jawher/mow.cli/internal/container"
-	"github.com/jawher/mow.cli/internal/values"
 )
 
 // BoolOpt describes a boolean option
@@ -27,10 +24,8 @@ type BoolOpt struct {
 }
 
 func (o BoolOpt) value(into *bool) (flag.Value, *bool) {
-	if into == nil {
-		into = new(bool)
-	}
-	return values.NewBool(into, o.Value), into
+	_ = "STUB: not implemented"
+	return *new(flag.Value), nil
 }
 
 // StringOpt describes a string option
@@ -51,10 +46,8 @@ type StringOpt struct {
 }
 
 func (o StringOpt) value(into *string) (flag.Value, *string) {
-	if into == nil {
-		into = new(string)
-	}
-	return values.NewString(into, o.Value), into
+	_ = "STUB: not implemented"
+	return *new(flag.Value), nil
 }
 
 // IntOpt describes an int option
@@ -75,10 +68,8 @@ type IntOpt struct {
 }
 
 func (o IntOpt) value(into *int) (flag.Value, *int) {
-	if into == nil {
-		into = new(int)
-	}
-	return values.NewInt(into, o.Value), into
+	_ = "STUB: not implemented"
+	return *new(flag.Value), nil
 }
 
 // Float64Opt describes an float64 option
@@ -99,10 +90,8 @@ type Float64Opt struct {
 }
 
 func (o Float64Opt) value(into *float64) (flag.Value, *float64) {
-	if into == nil {
-		into = new(float64)
-	}
-	return values.NewFloat64(into, o.Value), into
+	_ = "STUB: not implemented"
+	return *new(flag.Value), nil
 }
 
 // StringsOpt describes a string slice option
@@ -124,10 +113,8 @@ type StringsOpt struct {
 }
 
 func (o StringsOpt) value(into *[]string) (flag.Value, *[]string) {
-	if into == nil {
-		into = new([]string)
-	}
-	return values.NewStrings(into, o.Value), into
+	_ = "STUB: not implemented"
+	return *new(flag.Value), nil
 }
 
 // IntsOpt describes an int slice option
@@ -149,11 +136,8 @@ type IntsOpt struct {
 }
 
 func (o IntsOpt) value(into *[]int) (flag.Value, *[]int) {
-	if into == nil {
-		into = new([]int)
-	}
-	return values.NewInts(into, o.Value), into
-
+	_ = "STUB: not implemented"
+	return *new(flag.Value), nil
 }
 
 // Floats64Opt describes an int slice option
@@ -175,11 +159,8 @@ type Floats64Opt struct {
 }
 
 func (o Floats64Opt) value(into *[]float64) (flag.Value, *[]float64) {
-	if into == nil {
-		into = new([]float64)
-	}
-	return values.NewFloats64(into, o.Value), into
-
+	_ = "STUB: not implemented"
+	return *new(flag.Value), nil
 }
 
 // VarOpt describes an option where the type and format of the value is controlled by the developer
@@ -200,24 +181,21 @@ type VarOpt struct {
 }
 
 func (o VarOpt) value() flag.Value {
-	return o.Value
+	_ = "STUB: not implemented"
+
+	/*
+	   BoolOpt defines a boolean option on the command c named `name`, with an initial value of `value` and a description of `desc` which will be used in help messages.
+
+	   The name is a space separated list of the option names *WITHOUT* the dashes, e.g. `f force` and *NOT* `-f --force`.
+	   The one letter names will then be called with a single dash (short option), the others with two (long options).
+
+	   The result should be stored in a variable (a pointer to a bool) which will be populated when the app is run and the call arguments get parsed
+	*/return *new(flag.Value)
 }
 
-/*
-BoolOpt defines a boolean option on the command c named `name`, with an initial value of `value` and a description of `desc` which will be used in help messages.
-
-The name is a space separated list of the option names *WITHOUT* the dashes, e.g. `f force` and *NOT* `-f --force`.
-The one letter names will then be called with a single dash (short option), the others with two (long options).
-
-
-The result should be stored in a variable (a pointer to a bool) which will be populated when the app is run and the call arguments get parsed
-*/
 func (c *Cmd) BoolOpt(name string, value bool, desc string) *bool {
-	return c.Bool(BoolOpt{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 /*
@@ -226,15 +204,11 @@ BoolOptPtr defines a bool option on the command c named `name`, with an initial 
 The name is a space separated list of the option names *WITHOUT* the dashes, e.g. `f force` and *NOT* `-f --force`.
 The one letter names will then be called with a single dash (short option), the others with two (long options).
 
-
 The into parameter points to a variable (a pointer to a int slice) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) BoolOptPtr(into *bool, name string, value bool, desc string) {
-	c.BoolPtr(into, BoolOpt{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 /*
@@ -243,15 +217,11 @@ StringOpt defines a string option on the command c named `name`, with an initial
 The name is a space separated list of the option names *WITHOUT* the dashes, e.g. `f force` and *NOT* `-f --force`.
 The one letter names will then be called with a single dash (short option), the others with two (long options).
 
-
 The result should be stored in a variable (a pointer to a string) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) StringOpt(name string, value string, desc string) *string {
-	return c.String(StringOpt{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 /*
@@ -260,15 +230,11 @@ StringOptPtr defines a string option on the command c named `name`, with an init
 The name is a space separated list of the option names *WITHOUT* the dashes, e.g. `f force` and *NOT* `-f --force`.
 The one letter names will then be called with a single dash (short option), the others with two (long options).
 
-
 The into parameter points to a variable (a pointer to a int slice) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) StringOptPtr(into *string, name string, value string, desc string) {
-	c.StringPtr(into, StringOpt{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 /*
@@ -277,15 +243,11 @@ IntOpt defines an int option on the command c named `name`, with an initial valu
 The name is a space separated list of the option names *WITHOUT* the dashes, e.g. `f force` and *NOT* `-f --force`.
 The one letter names will then be called with a single dash (short option), the others with two (long options).
 
-
 The result should be stored in a variable (a pointer to an int) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) IntOpt(name string, value int, desc string) *int {
-	return c.Int(IntOpt{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 /*
@@ -294,15 +256,11 @@ IntOptPtr defines a int option on the command c named `name`, with an initial va
 The name is a space separated list of the option names *WITHOUT* the dashes, e.g. `f force` and *NOT* `-f --force`.
 The one letter names will then be called with a single dash (short option), the others with two (long options).
 
-
 The into parameter points to a variable (a pointer to an int) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) IntOptPtr(into *int, name string, value int, desc string) {
-	c.IntPtr(into, IntOpt{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 /*
@@ -311,15 +269,11 @@ Float64Opt defines an float64 option on the command c named `name`, with an init
 The name is a space separated list of the option names *WITHOUT* the dashes, e.g. `f force` and *NOT* `-f --force`.
 The one letter names will then be called with a single dash (short option), the others with two (long options).
 
-
 The result should be stored in a variable (a pointer to an float64) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) Float64Opt(name string, value float64, desc string) *float64 {
-	return c.Float64(Float64Opt{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 /*
@@ -328,15 +282,11 @@ Float64OptPtr defines a float64 option on the command c named `name`, with an in
 The name is a space separated list of the option names *WITHOUT* the dashes, e.g. `f force` and *NOT* `-f --force`.
 The one letter names will then be called with a single dash (short option), the others with two (long options).
 
-
 The into parameter points to a variable (a pointer to a float64) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) Float64OptPtr(into *float64, name string, value float64, desc string) {
-	c.Float64Ptr(into, Float64Opt{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 /*
@@ -345,15 +295,11 @@ StringsOpt defines a string slice option on the command c named `name`, with an 
 The name is a space separated list of the option names *WITHOUT* the dashes, e.g. `f force` and *NOT* `-f --force`.
 The one letter names will then be called with a single dash (short option), the others with two (long options).
 
-
 The result should be stored in a variable (a pointer to a string slice) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) StringsOpt(name string, value []string, desc string) *[]string {
-	return c.Strings(StringsOpt{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 /*
@@ -362,15 +308,11 @@ StringsOptPtr defines a string slice option on the command c named `name`, with 
 The name is a space separated list of the option names *WITHOUT* the dashes, e.g. `f force` and *NOT* `-f --force`.
 The one letter names will then be called with a single dash (short option), the others with two (long options).
 
-
 The into parameter points to a variable (a pointer to a int slice) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) StringsOptPtr(into *[]string, name string, value []string, desc string) {
-	c.StringsPtr(into, StringsOpt{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 /*
@@ -379,15 +321,11 @@ IntsOpt defines an int slice option on the command c named `name`, with an initi
 The name is a space separated list of the option names *WITHOUT* the dashes, e.g. `f force` and *NOT* `-f --force`.
 The one letter names will then be called with a single dash (short option), the others with two (long options).
 
-
 The result should be stored in a variable (a pointer to an int slice) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) IntsOpt(name string, value []int, desc string) *[]int {
-	return c.Ints(IntsOpt{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 /*
@@ -396,15 +334,11 @@ IntsOptPtr defines a int slice option on the command c named `name`, with an ini
 The name is a space separated list of the option names *WITHOUT* the dashes, e.g. `f force` and *NOT* `-f --force`.
 The one letter names will then be called with a single dash (short option), the others with two (long options).
 
-
 The into parameter points to a variable (a pointer to a int slice) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) IntsOptPtr(into *[]int, name string, value []int, desc string) {
-	c.IntsPtr(into, IntsOpt{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 /*
@@ -413,15 +347,11 @@ Floats64Opt defines an float64 slice option on the command c named `name`, with 
 The name is a space separated list of the option names *WITHOUT* the dashes, e.g. `f force` and *NOT* `-f --force`.
 The one letter names will then be called with a single dash (short option), the others with two (long options).
 
-
 The result should be stored in a variable (a pointer to an float64 slice) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) Floats64Opt(name string, value []float64, desc string) *[]float64 {
-	return c.Floats64(Floats64Opt{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 /*
@@ -430,15 +360,11 @@ Floats64OptPtr defines a int slice option on the command c named `name`, with an
 The name is a space separated list of the option names *WITHOUT* the dashes, e.g. `f force` and *NOT* `-f --force`.
 The one letter names will then be called with a single dash (short option), the others with two (long options).
 
-
 The into parameter points to a variable (a pointer to a int slice) which will be populated when the app is run and the call arguments get parsed
 */
 func (c *Cmd) Floats64OptPtr(into *[]float64, name string, value []float64, desc string) {
-	c.Floats64Ptr(into, Floats64Opt{
-		Name:  name,
-		Value: value,
-		Desc:  desc,
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 /*
@@ -447,36 +373,10 @@ VarOpt defines an option where the type and format is controlled by the develope
 The name is a space separated list of the option names *WITHOUT* the dashes, e.g. `f force` and *NOT* `-f --force`.
 The one letter names will then be called with a single dash (short option), the others with two (long options).
 
-
 The result will be stored in the value parameter (a value implementing the flag.Value interface) which will be populated when the app is run and the call arguments get parsed
 */
-func (c *Cmd) VarOpt(name string, value flag.Value, desc string) {
-	c.mkOpt(container.Container{Name: name, Desc: desc, Value: value})
-}
+func (c *Cmd) VarOpt(name string, value flag.Value, desc string) { _ = "STUB: not implemented"; return }
 
-func mkOptStrs(optName string) []string {
-	res := strings.Fields(optName)
-	for i, name := range res {
-		prefix := "-"
-		if len(name) > 1 {
-			prefix = "--"
-		}
-		res[i] = prefix + name
-	}
-	return res
-}
+func mkOptStrs(optName string) []string { _ = "STUB: not implemented"; return nil }
 
-func (c *Cmd) mkOpt(opt container.Container) {
-	opt.DefaultValue = values.DefaultValue(opt.Value)
-	opt.ValueSetFromEnv = values.SetFromEnv(opt.Value, opt.EnvVar)
-
-	opt.Names = mkOptStrs(opt.Name)
-
-	c.options = append(c.options, &opt)
-	for _, name := range opt.Names {
-		if _, found := c.optionsIdx[name]; found {
-			panic(fmt.Sprintf("duplicate option name %q", name))
-		}
-		c.optionsIdx[name] = &opt
-	}
-}
+func (c *Cmd) mkOpt(opt container.Container) { _ = "STUB: not implemented"; return }

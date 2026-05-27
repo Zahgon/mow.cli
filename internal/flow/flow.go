@@ -21,36 +21,6 @@ type Step struct {
 /*
 Run call the code block of the step, moves to the success step if the call went ok, opr the the error step otherwise
 */
-func (s *Step) Run(p interface{}) {
-	s.callDo(p)
+func (s *Step) Run(p interface{}) { _ = "STUB: not implemented"; return }
 
-	switch {
-	case s.Success != nil:
-		s.Success.Run(p)
-	case p == nil:
-		return
-	default:
-		if code, ok := p.(ExitCode); ok {
-			if s.Exiter != nil {
-				s.Exiter(int(code))
-			}
-			return
-		}
-		panic(p)
-	}
-}
-
-func (s *Step) callDo(p interface{}) {
-	if s.Do == nil {
-		return
-	}
-	defer func() {
-		if e := recover(); e != nil {
-			if s.Error == nil {
-				panic(p)
-			}
-			s.Error.Run(e)
-		}
-	}()
-	s.Do()
-}
+func (s *Step) callDo(p interface{}) { _ = "STUB: not implemented"; return }

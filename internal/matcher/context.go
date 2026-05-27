@@ -11,22 +11,7 @@ type ParseContext struct {
 }
 
 // NewParseContext create a new ParseContext
-func NewParseContext() ParseContext {
-	return ParseContext{
-		Args:          map[*container.Container][]string{},
-		Opts:          map[*container.Container][]string{},
-		ExcludedOpts:  map[*container.Container]struct{}{},
-		RejectOptions: false,
-	}
-}
+func NewParseContext() ParseContext { _ = "STUB: not implemented"; return *new(ParseContext) }
 
 // Merge adds the values in the provided context in the current context
-func (pc ParseContext) Merge(o ParseContext) {
-	for k, vs := range o.Args {
-		pc.Args[k] = append(pc.Args[k], vs...)
-	}
-
-	for k, vs := range o.Opts {
-		pc.Opts[k] = append(pc.Opts[k], vs...)
-	}
-}
+func (pc ParseContext) Merge(o ParseContext) { _ = "STUB: not implemented"; return }
